@@ -2,8 +2,13 @@ package com.limeiyao.common.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,5 +161,32 @@ public class FileUtil {
 	 */
 	public static List<String> readTextFileToList(String pathname){
 		return readTextFileToList(new File(pathname));
+	}
+	
+	public static List<String> readTxtOfLine(String path) {
+		FileInputStream fis = null;
+		Reader isr = null;
+		BufferedReader buffer = null;
+		List<String> list = null;
+		try {
+			fis = new FileInputStream(new File(path));
+			isr = new InputStreamReader(fis,"utf-8");
+			buffer = new BufferedReader(isr);
+			String line = "";
+			list = new ArrayList<String>();
+			while((line=buffer.readLine())!=null) {
+				list.add(line);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
