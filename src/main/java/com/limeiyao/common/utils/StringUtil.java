@@ -145,10 +145,10 @@ public class StringUtil {
 	 * @return: char      
 	 * @throws
 	 */
-	public static String getRandomCharAndNumber(int num) {
+	public static String getRandomCharAndNumber(int min,int max) {
 		StringBuffer sb = new StringBuffer();
 		Random random = new Random();
-		for(int i=0;i<num;i++) {
+		for(int i=min;i<max;i++) {
 			int randomNum = random.nextInt(36);
 			if(randomNum>10) {
 				char c = getRandomChar();
